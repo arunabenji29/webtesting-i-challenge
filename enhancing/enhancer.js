@@ -13,7 +13,7 @@ function succeed(item) {
 }
 
 function fail(item) {
-  console.log('item ',item)
+  // console.log('item ',item)
   if(item.enhancement<15){
 
     if(item.durability-5 >=0){
@@ -24,7 +24,7 @@ function fail(item) {
   else if(item.enhancement===15){
 
     if(item.durability-10 >=0){
-      console.log('item durability ',item.durability-10)
+      // console.log('item durability ',item.durability-10)
     return { ...item,durability:item.durability-10 };
     }
   }
@@ -45,5 +45,10 @@ function repair(item) {
 }
 
 function get(item) {
+  if(item.enhancement===0){
   return { ...item };
+  }
+  console.log(`changed name is [+${item.enhancement}] ${item.name}`)
+  return { ...item,name:`[+${item.enhancement}] ${item.name}` };
+    
 }

@@ -23,9 +23,9 @@ describe('enhancer.js', () => {
     });
 
     describe('fail()', () => {
-        it('check if the enhancement level increases by 1, if the value is below 20', () => {
-            
+    it('check either the enhancement or the durability based on the value of the enhancement', () => {
             expect(enhancer.fail({enhancement:21}).enhancement).toBe(20);
+            
             
             expect(enhancer.fail({enhancement:20,durability:0}).enhancement).toBe(19);
             expect(enhancer.fail({enhancement:19,durability:0}).enhancement).toBe(18);
@@ -37,4 +37,14 @@ describe('enhancer.js', () => {
             expect(enhancer.fail({enhancement:0,durability:10}).durability).toBe(5);
         });
     });
+
+    describe('get()', () => {
+        it('chnages the name, if the enhancement value is above zero', () => {
+            expect(enhancer.get({enhancement:0,name:'thorns'}).name).toBe('thorns');
+            expect(enhancer.get({enhancement:1,name:'Knife'}).name).toBe('[+1] Knife');
+            expect(enhancer.get({enhancement:19,name:'Soup'}).name).toBe('[+19] Soup');
+        });
+    });
+
+
 });
